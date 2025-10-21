@@ -161,12 +161,7 @@ export default function ContactoPage() {
           <LinkTile href={LINKS.social.tiktok} icon={Icons.tiktok}>
             TikTok
           </LinkTile>
-          <LinkTile href={LINKS.social.youtube} icon={Icons.yt}>
-            YouTube
-          </LinkTile>
-          <LinkTile href={LINKS.social.twitter} icon={Icons.x}>
-            X (Twitter)
-          </LinkTile>
+    
           <LinkTile href={LINKS.social.facebook} icon={Icons.fb}>
             Facebook
           </LinkTile>

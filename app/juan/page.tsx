@@ -1,10 +1,32 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import FlipCardColored from "@/components/flip-card-colored"
 
 export default function JuanPage() {
+  // Estado para manejar el índice del video actual
+  const [currentVideo, setCurrentVideo] = useState(0)
+
+  // Lista de videos
+  const videos = [
+    { src: "/videos/1.mp4", title: "Video 1" },
+    { src: "/videos/2.mp4", title: "Video 2" },  // Reemplazar espacio con %20
+    { src: "/videos/3.mp4", title: "Video 3" },  // Reemplazar espacio con %20
+    { src: "/videos/4.mp4", title: "Video 4" },  // Reemplazar espacio con %20
+  ]
+
+  // Función para cambiar al siguiente video
+  const nextVideo = () => {
+    setCurrentVideo((prev) => (prev + 1) % videos.length) // Asegura que no se pase del límite
+  }
+
+  // Función para cambiar al video anterior
+  const prevVideo = () => {
+    setCurrentVideo((prev) => (prev - 1 + videos.length) % videos.length) // Asegura que no se pase del límite
+  }
+
   return (
     <main className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-black text-white">
       {/* fondo animado con cartas */}
@@ -38,31 +60,32 @@ export default function JuanPage() {
       </div>
 
       {/* texto principal */}
-      <div className="relative z-10 mx-auto max-w-[680px] px-6 text-center">
+      <div className="relative z-10 mx-auto max-w-[680px] px-6 text-center mt-16">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="text-[clamp(34px,6vw,60px)] font-extrabold leading-tight"
         >
-          Juan no engañó a nadie 😳
+          Miehh, qué sos chismoso... 😜
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
+          transition={{ delay: 0.8, duration: 0.7 }}
           className="mt-4 text-[clamp(16px,2vw,20px)] text-white/80"
         >
-          Pero ya que tenemos tu atención... 🔥  
-          Te presentamos <strong>¿Juego o Fuego?</strong>, el juego de cartas que
-          pone a prueba qué tanto se conocen realmente tú y tu grupo.
+          <strong>Juan no engañó a nadie 😳</strong>
+          pero ya que tenemos tu atención... 🔥<br />
+          Descubre <strong>¿Juego o Fuego?</strong>, el juego de cartas que
+          revela qué tanto te conocen tus amigos.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.7 }}
+          transition={{ delay: 1.2, duration: 0.7 }}
           className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
           <Link
@@ -78,6 +101,35 @@ export default function JuanPage() {
             Cómpralo ahora
           </Link>
         </motion.div>
+      </div>
+
+      {/* Galería de videos */}
+      <div className="relative z-10 mt-16 w-full max-w-[680px] px-6 pt-8">
+        <div className="aspect-w-9 aspect-h-16">
+          <video
+            className="w-full max-w-[500px] h-auto rounded-xl mx-auto"
+            controls
+          >
+            <source src={videos[currentVideo].src} type="video/mp4" />
+            Tu navegador no soporta este formato de video.
+          </video>
+        </div>
+
+        {/* Botones para cambiar videos */}
+        <div className="flex justify-between mt-4">
+          <button
+            onClick={prevVideo}
+            className="text-white font-bold px-4 py-2 bg-black rounded-xl hover:bg-gray-800"
+          >
+            Anterior
+          </button>
+          <button
+            onClick={nextVideo}
+            className="text-white font-bold px-4 py-2 bg-black rounded-xl hover:bg-gray-800"
+          >
+            Siguiente
+          </button>
+        </div>
       </div>
 
       {/* footer */}

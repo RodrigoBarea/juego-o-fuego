@@ -36,8 +36,8 @@ export default function ComoJugarPage() {
             {...fadeUp}
             className="mt-4 max-w-[780px] mx-auto md:mx-0 text-[clamp(16px,2vw,20px)] text-black/70"
           >
-            <strong>¿Juego o Fuego?</strong> es un party game que revela lo que el grupo
-            realmente piensa de cada jugador. A través de preguntas sobre la vida,
+            <strong>¿Juego o Fuego?</strong> es un party game donde <strong>pordrás sabes lo que tus amigos piensan de ti. </strong>
+            A través de preguntas sobre la vida,
             <strong> todos votan en secreto</strong> para elegir quién encaja mejor en cada situación.
             Prepárate para sorpresas: aquí, <strong>la mayoría tiene la última palabra</strong> 🔥.
           </motion.p>
@@ -62,7 +62,7 @@ export default function ComoJugarPage() {
           >
             <li>
               <strong>Asignación de números 🍻</strong>: el grupo elige al jugador más
-              “borracho” como <strong>#1</strong>. Los demás reciben números en sentido horario.
+              “borracho o el más divertido” como <strong>#1</strong>. Los demás reciben números en sentido horario.
               Coloca tu número doblado (tipo triángulo) visible sobre la mesa.
             </li>
             <li>

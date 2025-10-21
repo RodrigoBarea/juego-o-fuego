@@ -13,10 +13,10 @@ const PRODUCT = {
   priceBs: 169,
   sku: "JOF-BASE-001",
   images: [
-    { src: "/logos/card-back-yellow.png", alt: "Caja ¿Juego o Fuego? vista frontal" },
-    { src: "/logos/card-back-blue.png", alt: "Vista lateral del producto" },
-    { src: "/logos/card-back-red.png", alt: "Contenido de cartas" },
-    { src: "/logos/card-front-badge-black.png", alt: "Detalle del emblema" },
+    { src: "/producto/3 (1).jpg", alt: "Caja ¿Juego o Fuego? vista frontal" },
+    { src: "/producto/4.jpg", alt: "Vista lateral del producto" },
+    { src: "/producto/1.jpg", alt: "Contenido de cartas" },
+    { src: "/producto/7.jpg", alt: "Detalle del emblema" },
   ],
   short:
     "Preguntas simples, votaciones épicas. El party game para romper el hielo y descubrir la vibra del grupo.",
