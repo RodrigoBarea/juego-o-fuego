@@ -1,4 +1,3 @@
-// components/card-fan-ryb.tsx
 "use client"
 
 import { motion } from "framer-motion"
@@ -6,47 +5,30 @@ import { useState } from "react"
 import FlipCardColored from "./flip-card-colored"
 
 type ColorKey = "red" | "blue" | "yellow"
+type LayoutItem = { styl:{ left:string; top:string; rotate?:number }; width:string }
 
-type LayoutItem = {
-  styl: {
-    left: string
-    top: string
-    rotate?: number
-  }
-  width: string
-}
-
-export default function CardFanRYB({
-  red,
-  blue,
-  yellow,
-}: {
-  red: string
-  blue: string
-  yellow: string
+export default function CardFanRYB({ red, blue, yellow }:{
+  red:string; blue:string; yellow:string
 }) {
   const [hovered, setHovered] = useState<number | null>(null)
+  const [activeIdx, setActiveIdx] = useState<number | null>(null) // 👈 móvil
 
-  // layout desktop (similar al abanico actual)
   const layout: LayoutItem[] = [
-    { styl: { left: "8%", top: "6%", rotate: -10 }, width: "w-56 md:w-64" }, // izquierda — roja
-    { styl: { left: "28%", top: "0%", rotate: -4 }, width: "w-56 md:w-64" }, // centro  — azul
-    { styl: { left: "48%", top: "8%", rotate: 6 }, width: "w-56 md:w-64" }, // derecha — amarilla
+    { styl: { left: "8%",  top: "6%", rotate: -10 }, width: "w-56 md:w-64" },
+    { styl: { left: "28%", top: "0%", rotate: -4  }, width: "w-56 md:w-64" },
+    { styl: { left: "48%", top: "8%", rotate: 6   }, width: "w-56 md:w-64" },
   ]
 
-  const items: Array<{ color: ColorKey; text: string }> = [
-    { color: "red", text: red },
-    { color: "blue", text: blue },
-    { color: "yellow", text: yellow },
+  const items = [
+    { color: "red" as ColorKey, text: red   },
+    { color: "blue" as ColorKey, text: blue },
+    { color: "yellow" as ColorKey, text: yellow },
   ]
 
   return (
     <>
-      {/* DESKTOP (>= lg) */}
-      <div
-        className="relative hidden h-[62vh] w-full overflow-visible lg:block"
-        style={{ perspective: 1200 }}
-      >
+      {/* DESKTOP */}
+      <div className="relative hidden h-[62vh] w-full overflow-visible lg:block" style={{ perspective: 1200 }}>
         {items.map((it, i) => {
           const isHover = hovered === i
           const rot = layout[i]?.styl.rotate ?? 0
@@ -58,46 +40,62 @@ export default function CardFanRYB({
                 left: layout[i].styl.left,
                 top: layout[i].styl.top,
                 zIndex: isHover ? 1000 : i + 1,
-                filter: isHover
-                  ? "none"
-                  : "drop-shadow(0 8px 22px rgba(0,0,0,0.25))",
+                filter: isHover ? "none" : "drop-shadow(0 8px 22px rgba(0,0,0,0.25))",
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
             >
-              <FlipCardColored
-                color={it.color}
-                text={it.text}
-                width={layout[i].width}
-                rotate={rot}
-              />
+              <FlipCardColored color={it.color} text={it.text} width={layout[i].width} rotate={rot} />
             </motion.div>
           )
         })}
       </div>
 
-      {/* MOBILE/TABLET (< lg) */}
-      <div className="relative lg:hidden overflow-visible" style={{ perspective: 1200 }}>
-        <div className="mx-auto flex w-full max-w-[92vw] items-end justify-center -space-x-5 sm:-space-x-7 pt-2">
-          {items.map((it, i) => (
-            <motion.div
-              key={i}
-              className="rotate-[-6deg] first:rotate-[-4deg] last:rotate-[4deg]"
-              animate={{ y: [0, -4, 0] }}
-              transition={{
-                duration: 2.6 + i * 0.15,
-                // easeInOut en números (cubic-bezier) => evita error de TS
-                ease: [0.42, 0, 0.58, 1],
-                repeat: Infinity,
-              }}
+      {/* MOBILE/TABLET */}
+<div className="relative lg:hidden overflow-visible" style={{ perspective: 1200 }}>
+  <div className="mx-auto w-full px-1">
+    <div
+      className="
+        mx-auto flex items-end justify-center
+        max-w-[90vw] sm:max-w-[88vw]
+        pt-1
+        translate-x-[-6%] sm:translate-x-[-4%]   // 👈 Mueve todo el grupo a la izquierda
+      "
+    >
+      {items.map((it, i) => {
+        const rot = i === 0 ? -3.5 : i === 1 ? -1.2 : 2.8
+        const insetX = i === 0 ? 10 : i === 2 ? -14 : 0
+
+        return (
+          <motion.div
+            key={i}
+            className="relative will-change-transform transform-gpu"
+            animate={{ y: [0, -3, 0] }}
+            transition={{ duration: 2.4 + i * 0.12, ease: [0.42, 0, 0.58, 1], repeat: Infinity }}
+            style={{ rotate: rot, x: insetX, zIndex: activeIdx === i ? 999 : i + 1 }}
+            onTouchStart={() => setActiveIdx(i)}
+            onTouchEnd={() => setActiveIdx(null)}
+          >
+            <div
+              className="
+                w-[clamp(7.6rem,31.5vw,10.2rem)]
+                sm:w-[clamp(8.8rem,29vw,11.4rem)]
+                max-[360px]:w-[8rem]
+              "
             >
-              <div className="w-[clamp(8rem,40vw,12rem)] sm:w-[clamp(10rem,34vw,14rem)]">
-                <FlipCardColored color={it.color} text={it.text} />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+              <FlipCardColored
+                color={it.color}
+                text={it.text}
+                onActivate={() => setActiveIdx(i)}
+                onDeactivate={() => setActiveIdx(null)}
+              />
+            </div>
+          </motion.div>
+        )
+      })}
+    </div>
+  </div>
+</div>
     </>
   )
 }

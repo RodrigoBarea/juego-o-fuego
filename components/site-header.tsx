@@ -1,8 +1,9 @@
+// components/site-header.tsx
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -11,42 +12,71 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const lockedScrollY = useRef(0); // guarda el scroll para restaurar
 
-  // Montado en cliente → evita hydration mismatch
+  // ===== helpers: lock/unlock scroll cross-browser (iOS friendly) =====
+  const lockBodyScroll = () => {
+    lockedScrollY.current = window.scrollY || window.pageYOffset || 0;
+    const body = document.body;
+    body.style.position = "fixed";
+    body.style.top = `-${lockedScrollY.current}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    body.style.overflow = "hidden"; // redundante pero ayuda en Android
+    // evita “bounce” en iOS
+    document.documentElement.style.overscrollBehavior = "none";
+  };
+
+  const unlockBodyScroll = () => {
+    const body = document.body;
+    const y = lockedScrollY.current;
+    body.style.position = "";
+    body.style.top = "";
+    body.style.left = "";
+    body.style.right = "";
+    body.style.width = "";
+    body.style.overflow = "";
+    document.documentElement.style.overscrollBehavior = "";
+    window.scrollTo(0, y);
+  };
+  // ===================================================================
+
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Esc para cerrar
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMobileOpen(false);
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  // Lock/unlock de scroll al abrir/cerrar
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) lockBodyScroll();
+    else unlockBodyScroll();
+    // limpieza por si el componente se desmonta con el menú abierto
+    return () => unlockBodyScroll();
   }, [mobileOpen]);
 
   const navItems = [
     { href: "/comprar", label: "Comprar" },
     { href: "/como-jugar", label: "Cómo se juega" },
     { href: "/#faqs", label: "FAQS" },
-    { href: "/contacto", label: "Contacto", newTab: true }, // abre en pestaña nueva
+    { href: "/contacto", label: "Contacto", newTab: true },
   ];
 
-  // ------------- OCULTAR EN RUTAS -------------
-  // Regex robusto: coincide /contacto o /juan, con o sin subrutas
-  const hideOn = (p?: string | null) =>
-    !!p && /^\/(contacto|juan)(\/|$)/.test(p);
+  const hideOn = (p?: string | null) => !!p && /^\/(contacto|juan)(\/|$)/.test(p);
 
-  if (!mounted) return null;          // SSR: no render hasta montar
-  if (hideOn(pathname)) return null;  // ocultar completamente en /contacto y /juan
-  // --------------------------------------------
+  if (!mounted) return null;
+  if (hideOn(pathname)) return null;
 
   return (
     <header
@@ -102,11 +132,18 @@ export function SiteHeader() {
       {/* Overlay + Drawer móvil */}
       {mobileOpen && (
         <div className="md:hidden" id="mobile-menu">
+          {/* overlay */}
           <div
-            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-[1px]"
+            className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-[1px]"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="fixed right-0 top-0 z-[60] h-full w-80 max-w-[85%] bg-[rgb(var(--bg))] shadow-2xl border-l border-black/10 animate-in slide-in-from-right duration-200">
+          {/* drawer */}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú"
+            className="fixed right-0 top-0 z-[70] h-full w-80 max-w-[85%] bg-[rgb(var(--bg))] shadow-2xl border-l border-black/10 animate-in slide-in-from-right duration-200 overscroll-contain"
+          >
             <div className="flex items-center justify-between px-6 py-5 border-b border-black/10">
               <span className="text-base font-semibold tracking-tight">Menú</span>
               <button

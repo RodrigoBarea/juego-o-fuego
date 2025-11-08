@@ -1,4 +1,3 @@
-// components/flip-card-colored.tsx
 "use client"
 
 import { motion } from "framer-motion"
@@ -13,7 +12,6 @@ const FRONT_BY_COLOR: Record<Deck, string> = {
   yellow: "rgb(var(--yellow))",
 }
 
-// 👇 Mapea el reverso por color
 const BACK_BY_COLOR: Record<Deck, string> = {
   red: "/logos/card-back-red.png",
   blue: "/logos/card-back-blue.png",
@@ -26,12 +24,16 @@ export default function FlipCardColored({
   delay = 0,
   width = "w-56 md:w-64",
   rotate = 0,
+  onActivate,
+  onDeactivate,
 }: {
   color: Deck
   text: string
   delay?: number
   width?: string
   rotate?: number
+  onActivate?: () => void
+  onDeactivate?: () => void
 }) {
   const [flipped, setFlipped] = useState(true)
   const [hovered, setHovered] = useState(false)
@@ -41,11 +43,19 @@ export default function FlipCardColored({
       initial={{ y: 60, opacity: 0, rotate: rotate - 6 }}
       animate={{ y: 0, opacity: 1, rotate }}
       transition={{ delay, duration: 0.45, type: "spring", stiffness: 120, damping: 16 }}
-      className={`relative ${width} aspect-[2/3] select-none`}
-      style={{ transformStyle: "preserve-3d", zIndex: hovered ? 1000 : 10 }}
-      onMouseEnter={() => { setFlipped(false); setHovered(true) }}
-      onMouseLeave={() => { setFlipped(true);  setHovered(false) }}
-      onTouchStart={() => setFlipped(v => !v)}
+      className={`relative ${width} aspect-[2/3] select-none isolate`} /* 👈 isolate */
+      style={{
+        transformStyle: "preserve-3d",
+        willChange: "transform",
+        zIndex: hovered ? 1000 : 10,
+      }}
+      onMouseEnter={() => { setFlipped(false); setHovered(true); onActivate?.() }}
+      onMouseLeave={() => { setFlipped(true);  setHovered(false); onDeactivate?.() }}
+      onMouseDown={() => onActivate?.()}
+      onMouseUp={() => onDeactivate?.()}
+      onTouchStart={() => { setFlipped(v => !v); onActivate?.() }}
+      onTouchEnd={() => onDeactivate?.()}
+      onTouchCancel={() => onDeactivate?.()}
       whileHover={{ scale: 1.08, y: -16 }}
     >
       {/* FRENTE */}
@@ -67,7 +77,6 @@ export default function FlipCardColored({
           <p className="px-5 pb-4 text-center text-[18px] leading-snug font-semibold text-black">
             {text}
           </p>
-          {/* badge negro inferior */}
           <div className="flex items-center justify-center pb-4">
             <div className="relative h-7 w-7">
               <Image
@@ -82,7 +91,7 @@ export default function FlipCardColored({
         </div>
       </motion.div>
 
-      {/* REVERSO — negro + logo por color */}
+      {/* REVERSO */}
       <motion.div
         initial={{ rotateY: 0 }}
         animate={{ rotateY: flipped ? 0 : -180 }}

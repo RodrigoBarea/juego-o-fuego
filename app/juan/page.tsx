@@ -67,7 +67,7 @@ export default function JuanPage() {
           transition={{ duration: 0.7 }}
           className="text-[clamp(34px,6vw,60px)] font-extrabold leading-tight"
         >
-          Miehh, qué sos chismoso... 😜
+          Carajo, qué sos chismoso... 😜
         </motion.h1>
 
         <motion.p

@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import CardFanRYB from "@/components/card-fan-ryb"
-import SectionSummary from "@/components/section-summary" // 👈 NUEVO IMPORT
+import SectionSummary from "@/components/section-summary"
 import SectionPurchaseCards from "@/components/section-purchase-cards"
 import SectionTestimonialsCards from "@/components/section-testimonials-cards"
 import SectionFAQ from "@/components/section-faq"
@@ -10,7 +10,7 @@ import SectionFAQ from "@/components/section-faq"
 export default function HomePage() {
   const pick1 = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)]
 
- const RED = [
+  const RED = [
     "¿Quién se cogería a su jefe?",
     "¿Quién ha perdido su virginidad más joven?",
     "¿Quién tiene fantasías sexuales con el/la herman@ de su pareja?",
@@ -29,7 +29,6 @@ export default function HomePage() {
 
   const BLUE = [
     "¿Quién cuenta los chistes más malos pero igual hacen reír?",
-    "¿Qué fue lo más gracioso que te pasó esta semana?",
     "¿Quién tiene la risa más contagiosa?",
     "¿Quién ha continuado en una relación porque no sabía cómo terminar?",
     "¿Quién le ha robado dinero a un miembro de su familia?",
@@ -64,24 +63,45 @@ export default function HomePage() {
   return (
     <>
       {/* HERO principal */}
-      <section className="relative min-h-[94vh] w-full overflow-hidden bg-[rgb(var(--bg))]">
-      <div className="mx-auto grid min-h-[94vh] max-w-7xl grid-cols-1 items-center gap-10 px-6 pt-28 sm:px-8 lg:grid-cols-2 lg:px-12">
-        {/* IZQUIERDA */}
-        <div>
-          <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight">
-            Preguntas simples,<br />votaciones épicas.
-          </h1>
-          <p className="mt-6 max-w-xl text-xl text-black/80">
-            Descubre qué piensa realmente tu grupo.
-          </p>
-          <div className="mt-8 flex gap-4">
-<Button variant="outline" asChild><Link href="/comprar">Cómpralo ahora</Link></Button>
+      <section className="relative w-full overflow-hidden bg-[rgb(var(--bg))] min-h-[100svh] md:min-h-[94vh]">
+        <div className="mx-auto grid min-h-[100svh] md:min-h-[94vh] max-w-7xl grid-cols-1 items-center gap-10 px-6 pt-24 sm:px-8 lg:grid-cols-2 lg:px-12">
+          {/* IZQUIERDA */}
+          <div>
+            {/* Título fluido y balanceado para que no se corte en iOS/Android */}
+            <h1
+              className="
+                text-balance leading-[0.95]
+                text-[clamp(36px,9vw,72px)] md:text-[clamp(48px,6.2vw,88px)]
+                font-extrabold tracking-tight
+                max-w-[22ch]
+              "
+            >
+              Preguntas simples, <br /> votaciones épicas.
+            </h1>
 
-            <Button variant="outline" asChild><Link href="/como-jugar">Cómo se juega</Link></Button>
+            <p className="mt-5 max-w-xl text-[clamp(16px,4.4vw,20px)] text-black/80">
+              Descubre lo qué tus amigos realmente piensan de ti.
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button variant="outline" asChild>
+                <Link href="/comprar">Cómpralo ahora</Link>
+              </Button>
+
+              <Button variant="outline" asChild>
+                <Link href="/como-jugar">Cómo se juega</Link>
+              </Button>
+            </div>
           </div>
-        </div>
 
-          <div className="relative">
+          {/* DERECHA: Fan de cartas */}
+          <div
+            className="
+              relative mx-auto w-full max-w-[520px]
+              scale-90 sm:scale-95 md:scale-100
+              max-[360px]:scale-[.84]
+            "
+          >
             <CardFanRYB red={red} blue={blue} yellow={yellow} />
           </div>
         </div>
@@ -92,7 +112,6 @@ export default function HomePage() {
       <SectionPurchaseCards productHref="/comprar" />
       <SectionTestimonialsCards autoplay intervalMs={6000} />
       <SectionFAQ />
-
     </>
   )
 }
