@@ -1,4 +1,3 @@
-// components/card-fan-ryb.tsx
 "use client"
 
 import { motion } from "framer-motion"
@@ -9,10 +8,16 @@ type ColorKey = "red" | "blue" | "yellow"
 type LayoutItem = { styl:{ left:string; top:string; rotate?:number }; width:string }
 
 export default function CardFanRYB({
-  red, blue, yellow,
-}: { red:string; blue:string; yellow:string }) {
-  const [hovered, setHovered] = useState<number | null>(null)     // desktop
-  const [activeIdx, setActiveIdx] = useState<number | null>(null) // móvil: carta “arriba”
+  red,
+  blue,
+  yellow,
+}: {
+  red: string
+  blue: string
+  yellow: string
+}) {
+  const [hovered, setHovered] = useState<number | null>(null)
+  const [activeMobileColor, setActiveMobileColor] = useState<ColorKey>("blue")
 
   const layout: LayoutItem[] = [
     { styl: { left: "8%",  top: "6%", rotate: -10 }, width: "w-56 md:w-64" },
@@ -26,13 +31,19 @@ export default function CardFanRYB({
     { color: "yellow" as ColorKey, text: yellow },
   ]
 
+  const activeMobile = items.find(c => c.color === activeMobileColor)!
+
   return (
     <>
-      {/* DESKTOP (>= lg) */}
-      <div className="relative hidden h-[62vh] w-full overflow-visible lg:block" style={{ perspective: 1200 }}>
+      {/* ===== DESKTOP (abanico igual que antes) ===== */}
+      <div
+        className="relative hidden h-[62vh] w-full overflow-visible lg:block"
+        style={{ perspective: 1200 }}
+      >
         {items.map((it, i) => {
           const isHover = hovered === i
           const rot = layout[i]?.styl.rotate ?? 0
+
           return (
             <motion.div
               key={i}
@@ -41,7 +52,9 @@ export default function CardFanRYB({
                 left: layout[i].styl.left,
                 top: layout[i].styl.top,
                 zIndex: isHover ? 1000 : i + 1,
-                filter: isHover ? "none" : "drop-shadow(0 8px 22px rgba(0,0,0,0.25))",
+                filter: isHover
+                  ? "none"
+                  : "drop-shadow(0 8px 22px rgba(0,0,0,0.25))",
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
@@ -57,61 +70,43 @@ export default function CardFanRYB({
         })}
       </div>
 
-      {/* MOBILE/TABLET (< lg) */}
-      <div className="relative lg:hidden overflow-visible" style={{ perspective: 1200 }}>
-        <div className="mx-auto w-full px-1">
-          <div
-            className="
-              mx-auto flex items-end justify-center
-              max-w-[90vw] sm:max-w-[88vw]
-              -space-x-1.5 sm:-space-x-2
-              pt-1
-            "
-            // desplazamiento base hacia la izquierda
-            style={{ transform: "translateX(-8px)" }} // ← más a la izquierda
-          >
-            {items.map((it, i) => {
-              const rot = i === 0 ? -3.5 : i === 1 ? -1.2 : 2.8
-              const insetX = i === 0 ? 6 : i === 2 ? -10 : 0 // mete la amarilla
-              const isActive = activeIdx === i
+      {/* ===== MÓVIL / TABLET: una carta centrada ===== */}
+      <div className="relative lg:hidden flex flex-col items-center gap-4 pt-3">
+        {/* Carta grande */}
+        <div className="w-[min(72vw,15.5rem)]">
+          <FlipCardColored
+            color={activeMobile.color}
+            text={activeMobile.text}
+          />
+        </div>
 
-              return (
-                <motion.div
-                  key={i}
-                  className="relative will-change-transform transform-gpu"
-                  animate={isActive ? { scale: 1.06, y: -6 } : { y: [0, -3, 0] }}
-                  transition={
-                    isActive
-                      ? { type: "spring", stiffness: 260, damping: 20 }
-                      : { duration: 2.4 + i * 0.12, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
-                  }
-                  style={{
-                    rotate: rot,
-                    x: insetX,
-                    zIndex: isActive ? 999 : i + 1,
-                    filter: isActive ? "drop-shadow(0 18px 40px rgba(0,0,0,0.35))" : undefined,
-                  }}
-                >
-                  <div
-                    className="
-                      w-[clamp(7.6rem,31.5vw,10.2rem)]
-                      sm:w-[clamp(8.8rem,29vw,11.4rem)]
-                      max-[360px]:w-[8rem]
-                    "
-                  >
-                    <FlipCardColored
-                      color={it.color}
-                      text={it.text}
-                      // al mostrar el frente, sube esta carta
-                      onActivate={() => setActiveIdx(i)}
-                      // al volver al reverso, baja
-                      onDeactivate={() => setActiveIdx(prev => (prev === i ? null : prev))}
-                    />
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
+        {/* Selector de color */}
+        <div className="flex items-center gap-3 mt-1">
+          {items.map(card => {
+            const isActive = card.color === activeMobileColor
+
+            const bg =
+              card.color === "red"
+                ? "bg-[rgb(var(--red))]"
+                : card.color === "blue"
+                ? "bg-[rgb(var(--blue))]"
+                : "bg-[rgb(var(--yellow))]"
+
+            return (
+              <button
+                key={card.color}
+                type="button"
+                onClick={() => setActiveMobileColor(card.color)}
+                className={[
+                  "h-4 w-4 rounded-full border border-black/15",
+                  bg,
+                  isActive ? "scale-110 ring-2 ring-black/40" : "opacity-70",
+                  "transition-transform",
+                ].join(" ")}
+                aria-label={card.color}
+              />
+            )
+          })}
         </div>
       </div>
     </>

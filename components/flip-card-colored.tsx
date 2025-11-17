@@ -1,9 +1,8 @@
-// components/flip-card-colored.tsx
 "use client"
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { useEffect, useMemo, useState } from "react"
+import { useState } from "react"
 
 type Deck = "red" | "blue" | "yellow"
 
@@ -25,7 +24,6 @@ export default function FlipCardColored({
   delay = 0,
   width = "w-56 md:w-64",
   rotate = 0,
-  /** eventos para que el padre “suba” esta carta */
   onActivate,
   onDeactivate,
 }: {
@@ -37,70 +35,40 @@ export default function FlipCardColored({
   onActivate?: () => void
   onDeactivate?: () => void
 }) {
-  const isCoarse = useMemo(
-    () => typeof window !== "undefined" && matchMedia("(pointer: coarse)").matches,
-    []
-  )
-
-  const [flipped, setFlipped] = useState(true)   // true = muestra reverso (negro)
+  const [flipped, setFlipped] = useState(true)
   const [hovered, setHovered] = useState(false)
-
-  // En móviles: solo tap. En desktop: hover + tap
-  const handleMouseEnter = () => {
-    if (!isCoarse) {
-      setFlipped(false)
-      setHovered(true)
-      onActivate?.()
-    }
-  }
-  const handleMouseLeave = () => {
-    if (!isCoarse) {
-      setFlipped(true)
-      setHovered(false)
-      onDeactivate?.()
-    }
-  }
-
-  const handleClick = () => {
-    setFlipped(v => {
-      const next = !v
-      if (!v) {
-        // estaba frente → pasará a reverso
-        onDeactivate?.()
-      } else {
-        // estaba reverso → pasará a frente (mostrar texto)
-        onActivate?.()
-      }
-      return next
-    })
-  }
-
-  // Por si el usuario deja el dedo sobre la carta (iOS), limpiamos “hover”
-  useEffect(() => {
-    if (isCoarse && hovered) setHovered(false)
-  }, [isCoarse, hovered])
 
   return (
     <motion.div
       initial={{ y: 60, opacity: 0, rotate: rotate - 6 }}
       animate={{ y: 0, opacity: 1, rotate }}
       transition={{ delay, duration: 0.45, type: "spring", stiffness: 120, damping: 16 }}
-      className={`relative ${width} aspect-[2/3] select-none`}
-      style={{ transformStyle: "preserve-3d", zIndex: hovered ? 1000 : 10 }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-      whileHover={!isCoarse ? { scale: 1.08, y: -16 } : undefined}
+      className={`relative ${width} aspect-[2/3] select-none isolate`} /* 👈 isolate */
+      style={{
+        transformStyle: "preserve-3d",
+        willChange: "transform",
+        zIndex: hovered ? 1000 : 10,
+      }}
+      onMouseEnter={() => { setFlipped(false); setHovered(true); onActivate?.() }}
+      onMouseLeave={() => { setFlipped(true);  setHovered(false); onDeactivate?.() }}
+      onMouseDown={() => onActivate?.()}
+      onMouseUp={() => onDeactivate?.()}
+      onTouchStart={() => { setFlipped(v => !v); onActivate?.() }}
+      onTouchEnd={() => onDeactivate?.()}
+      onTouchCancel={() => onDeactivate?.()}
+      whileHover={{ scale: 1.08, y: -16 }}
     >
-      {/* FRENTE (texto) */}
+      {/* FRENTE */}
       <motion.div
         initial={{ rotateY: 180 }}
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.55, ease: "easeInOut" }}
         className="absolute inset-0 rounded-2xl border border-black/20 [backface-visibility:hidden] overflow-hidden"
         style={{
           backgroundColor: FRONT_BY_COLOR[color],
-          boxShadow: "0 24px 56px -18px rgba(0,0,0,0.5)",
+          boxShadow: hovered
+            ? "0 28px 60px -18px rgba(0,0,0,0.55)"
+            : "0 18px 40px -18px rgba(0,0,0,0.45)",
           zIndex: 20,
         }}
       >
@@ -127,7 +95,7 @@ export default function FlipCardColored({
       <motion.div
         initial={{ rotateY: 0 }}
         animate={{ rotateY: flipped ? 0 : -180 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.55, ease: "easeInOut" }}
         className="absolute inset-0 rounded-2xl [backface-visibility:hidden] overflow-hidden"
         style={{
           rotateY: 180,
