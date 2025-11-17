@@ -21,10 +21,10 @@ const PRODUCT = {
   short:
     "Preguntas simples, votaciones épicas. El party game para romper el hielo y descubrir la vibra del grupo.",
   includes: [
-    "3 mazos: rojas (picantes), azules (divertidas) y amarillas (optimistas).",
-    "Tarjetas de votación numeradas para cada jugador.",
-    "Reglamento rápido + modo tranqui.",
-    "Diagnóstico final (la vibra del grupo).",
+    "10 pins dde numeración.",
+    "90 cartas de votación.",
+    "180 cartas de preguntas.",
+    "1 set de instrucciones.",
   ],
   // 👇 Detalles actualizados según la caja
   details: [
