@@ -13,21 +13,21 @@ type Faq = {
 }
 
 const FAQS: Faq[] = [
-  { q: "¿De qué trata Juego o Fuego?", a: (<p>Es un juego de preguntas y <strong>votaciones secretas</strong> para decidir quién encaja mejor en cada situación. El objetivo es reír, sorprenderse y descubrir cómo percibe el grupo a cada jugador. Gana quien acumula más puntos.</p>), color: "yellow" },
-  { q: "¿Cómo me preparo para empezar?", a: (<ul className="list-disc pl-5 space-y-2"><li><strong>Asigna números</strong> a los jugadores (1…n) y colócalos visibles.</li><li><strong>Entrega tarjetas de votación</strong> numeradas a cada jugador (1…n).</li><li>El jugador <strong>#1 lee primero</strong>; el #2 le sigue, y así sucesivamente.</li></ul>), color: "blue" },
-  { q: "¿Cómo se juega cada ronda?", a: (<ol className="list-decimal pl-5 space-y-2"><li>El lector elige un mazo (rojo, azul o amarillo) y lee la carta.</li><li>Todas las personas votan en secreto quién encaja mejor.</li><li>Se revela la mayoría y esa persona gana un punto.</li></ol>), color: "red" },
-  { q: "¿Qué diferencia hay entre los mazos?", a: (<ul className="list-disc pl-5 space-y-2"><li><strong>Rojo:</strong> preguntas picantes.</li><li><strong>Azul:</strong> preguntas divertidas.</li><li><strong>Amarillo:</strong> preguntas optimistas.</li></ul>), color: "yellow" },
-  { q: "¿Las votaciones son siempre secretas?", a: (<p>Por defecto sí (tarjeta boca abajo). Si el grupo lo prefiere, pueden hacer una <strong>votación abierta</strong> al conteo de “1, 2, 3”.</p>), color: "blue" },
-  { q: "¿Qué pasa si hay empate?", a: (<ul className="list-disc pl-5 space-y-2"><li>El lector decide quién gana entre los empatados; o</li><li>Se hace una <strong>nueva votación</strong> solo entre finalistas.</li></ul>), color: "red" },
-  { q: "¿Cuándo termina el juego?", a: (<p>Al completar el número de rondas acordadas o cuando se acaban las cartas. Gana quien tenga más puntos.</p>), color: "yellow" },
-  { q: "¿Qué es el “Modo tranqui”?", a: (<p>Si quieren algo más chill, jueguen con <strong>solo azules y amarillas</strong> (sin rojas).</p>), color: "blue" },
-  { q: "¿Qué es el “Diagnóstico final”?", a: (<p>Al terminar, lean el Diagnóstico: el juego “describe” la vibra que proyectó cada persona según los colores de cartas que ganó (rojas, azules, amarillas).</p>), color: "yellow" },
-  { q: "¿Hay reglas opcionales?", a: (<ul className="list-disc pl-5 space-y-2"><li><strong>Explicar el voto</strong> para sumar debate y humor.</li><li><strong>Regla de bebida</strong> (o pequeños retos) por cada punto, si el grupo quiere.</li></ul>), color: "red" },
-  { q: "¿Cómo compro el juego en la web?", a: (<p>Entra a <strong>Comprar</strong>, añade el juego al carrito y confirma tus datos. Te contactamos por WhatsApp o correo con los detalles de envío y pago.</p>), color: "blue" },
-  { q: "¿Qué formas de pago aceptan?", a: (<p>Tarjeta, QR y <strong>transferencias interbancarias</strong>. Si necesitas otro método, escríbenos y te ayudamos.</p>), color: "yellow" },
-  { q: "¿Hacen envíos a toda Bolivia?", a: (<p>Sí. Enviamos a capitales y provincias, con <strong>tracking</strong> y soporte por WhatsApp. El tiempo depende de tu ciudad y transportadora.</p>), color: "blue" },
-  { q: "¿Puedo devolver o cambiar mi pedido?", a: (<p>Si hubo un problema con tu producto o llegó dañado, <strong>contáctanos dentro de 48 h</strong> con fotos y número de pedido para gestionar el cambio.</p>), color: "red" },
-  { q: "¿Para qué tipo de grupo es?", a: (<p>Ideal para <strong>grupos de amigos</strong> en ambiente relajado y de confianza, porque algunas preguntas pueden ser picantes o revelar opiniones fuertes.</p>), color: "yellow" },
+  { q: "De qué trata Juego o Fuego?", a: (<p>Es un juego de preguntas y <strong>votaciones secretas</strong> para decidir quién encaja mejor en cada situación. El objetivo es reír, sorprenderse y descubrir cómo percibe el grupo a cada jugador. Gana quien acumula más puntos.</p>), color: "yellow" },
+  { q: "Cómo me preparo para empezar?", a: (<ul className="list-disc pl-5 space-y-2"><li><strong>Asigna números</strong> a los jugadores (1…n) y colócalos visibles.</li><li><strong>Entrega tarjetas de votación</strong> numeradas a cada jugador (1…n).</li><li>El jugador <strong>#1 lee primero</strong>; el #2 le sigue, y así sucesivamente.</li></ul>), color: "blue" },
+  { q: "Cómo se juega cada ronda?", a: (<ol className="list-decimal pl-5 space-y-2"><li>El lector elige un mazo (rojo, azul o amarillo) y lee la carta.</li><li>Todas las personas votan en secreto quién encaja mejor.</li><li>Se revela la mayoría y esa persona gana un punto.</li></ol>), color: "red" },
+  { q: "Qué diferencia hay entre los mazos?", a: (<ul className="list-disc pl-5 space-y-2"><li><strong>Rojo:</strong> preguntas picantes.</li><li><strong>Azul:</strong> preguntas divertidas.</li><li><strong>Amarillo:</strong> preguntas optimistas.</li></ul>), color: "yellow" },
+  { q: "Las votaciones son siempre secretas?", a: (<p>Por defecto sí (tarjeta boca abajo). Si el grupo lo prefiere, pueden hacer una <strong>votación abierta</strong> al conteo de “1, 2, 3”.</p>), color: "blue" },
+  { q: "Qué pasa si hay empate?", a: (<ul className="list-disc pl-5 space-y-2"><li>El lector decide quién gana entre los empatados; o</li><li>Se hace una <strong>nueva votación</strong> solo entre finalistas.</li></ul>), color: "red" },
+  { q: "Cuándo termina el juego?", a: (<p>Al completar el número de rondas acordadas o cuando se acaban las cartas. Gana quien tenga más puntos.</p>), color: "yellow" },
+  { q: "Qué es el “Modo tranqui”?", a: (<p>Si quieren algo más chill, jueguen con <strong>solo azules y amarillas</strong> (sin rojas).</p>), color: "blue" },
+  { q: "Qué es el “Diagnóstico final”?", a: (<p>Al terminar, lean el Diagnóstico: el juego “describe” la vibra que proyectó cada persona según los colores de cartas que ganó (rojas, azules, amarillas).</p>), color: "yellow" },
+  { q: "Hay reglas opcionales?", a: (<ul className="list-disc pl-5 space-y-2"><li><strong>Explicar el voto</strong> para sumar debate y humor.</li><li><strong>Regla de bebida</strong> (o pequeños retos) por cada punto, si el grupo quiere.</li></ul>), color: "red" },
+  { q: "Cómo compro el juego en la web?", a: (<p>Entra a <strong>Comprar</strong>, añade el juego al carrito y confirma tus datos. Te contactamos por WhatsApp o correo con los detalles de envío y pago.</p>), color: "blue" },
+  { q: "Qué formas de pago aceptan?", a: (<p>Tarjeta, QR y <strong>transferencias interbancarias</strong>. Si necesitas otro método, escríbenos y te ayudamos.</p>), color: "yellow" },
+  { q: "Hacen envíos a toda Bolivia?", a: (<p>Sí. Enviamos a capitales y provincias, con <strong>tracking</strong> y soporte por WhatsApp. El tiempo depende de tu ciudad y transportadora.</p>), color: "blue" },
+  { q: "Puedo devolver o cambiar mi pedido?", a: (<p>Si hubo un problema con tu producto o llegó dañado, <strong>contáctanos dentro de 48 h</strong> con fotos y número de pedido para gestionar el cambio.</p>), color: "red" },
+  { q: "Para qué tipo de grupo es?", a: (<p>Ideal para <strong>grupos de amigos</strong> en ambiente relajado y de confianza, porque algunas preguntas pueden ser picantes o revelar opiniones fuertes.</p>), color: "yellow" },
 ]
 
 const TINT = {

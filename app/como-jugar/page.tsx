@@ -34,12 +34,14 @@ export default function ComoJugarPage() {
 
           <motion.p
             {...fadeUp}
-            className="mt-4 max-w-[780px] mx-auto md:mx-0 text-[clamp(16px,2vw,20px)] text-black/70"
+            className="mt-4 max-w-[780px] mx-auto md:mx-0 text-[clamp(16px,2vw,20px)] text-black/70 text-justify md:text-left"
           >
-            <strong>¿Juego o Fuego?</strong> es un party game donde <strong>pordrás sabes lo que tus amigos piensan de ti. </strong>
-            A través de preguntas sobre la vida,
-            <strong> todos votan en secreto</strong> para elegir quién encaja mejor en cada situación.
-            Prepárate para sorpresas: aquí, <strong>la mayoría tiene la última palabra</strong> 🔥.
+            <strong>¿Juego o Fuego?</strong> es un party game donde{" "}
+            <strong>podrás saber lo que tus amigos piensan de ti.</strong>{" "}
+            A través de preguntas sobre la vida,{" "}
+            <strong>todos votan en secreto</strong> para elegir quién encaja mejor en cada situación.
+            Prepárate para sorpresas: aquí,{" "}
+            <strong>la mayoría tiene la última palabra</strong>.
           </motion.p>
         </div>
       </section>
@@ -58,20 +60,20 @@ export default function ComoJugarPage() {
 
           <motion.ul
             {...fadeUp}
-            className="mt-4 list-disc pl-6 md:pl-8 space-y-2 text-[clamp(15px,2vw,18px)] text-black/75"
+            className="mt-4 list-disc pl-6 md:pl-8 space-y-2 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left"
           >
             <li>
-              <strong>Asignación de números 🍻</strong>: el grupo elige al jugador más
+              <strong>Asignación de números</strong>: el grupo elige al jugador más
               “borracho o el más divertido” como <strong>#1</strong>. Los demás reciben números en sentido horario.
               Coloca tu número doblado (tipo triángulo) visible sobre la mesa.
             </li>
             <li>
-              <strong>Tarjetas de votación 🗳</strong>: cada jugador recibe tarjetas del{" "}
+              <strong>Tarjetas de votación</strong>: cada jugador recibe tarjetas del{" "}
               <em>1…n</em>. Puedes votar por ti mismo, pero con sinceridad —solo si crees
               que te describe mejor que a cualquier otro.
             </li>
             <li>
-              <strong>Primer lector 🔢</strong>: empieza el <strong>#1</strong>, luego el{" "}
+              <strong>Primer lector</strong>: empieza el <strong>#1</strong>, luego el{" "}
               <strong>#2</strong>, y así sucesivamente.
             </li>
           </motion.ul>
@@ -92,30 +94,37 @@ export default function ComoJugarPage() {
 
           <motion.ol
             {...fadeUp}
-            className="mt-4 list-decimal pl-6 md:pl-8 space-y-3 text-[clamp(15px,2vw,18px)] text-black/75"
+            className="mt-4 list-decimal pl-6 md:pl-8 space-y-3 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left"
           >
             <li>
-              🃏 <strong>Selección de carta</strong>: el lector elige un mazo (rojo, azul o amarillo) y{" "}
+              <strong>Selección de carta</strong>: el lector elige un mazo (rojo, azul o amarillo) y{" "}
               <strong>lee la pregunta</strong> al grupo.
             </li>
             <li>
-              🤫 <strong>Votación secreta</strong>: cada jugador (incluido el lector) elige la tarjeta
+              <strong>Votación secreta</strong>: cada jugador (incluido el lector) elige la tarjeta
               del jugador que mejor encaja y la deja boca abajo.
               <br />
               <span className="text-black/60">
-                👉 Alternativa: votación abierta. El moderador cuenta “uno, dos, tres” y todos
+                Alternativa: votación abierta. El moderador cuenta “uno, dos, tres” y todos
                 muestran su voto a la vez.
               </span>
             </li>
-            <li>🔍 <strong>Revelación</strong>: el lector mezcla y revela los votos; se cuenta la mayoría.</li>
             <li>
-              🏆 <strong>Punto</strong>: quien tuvo más votos se lleva la carta de pregunta como punto.
+              <strong>Revelación</strong>: el lector mezcla y revela los votos; se cuenta la mayoría.
+            </li>
+            <li>
+              <strong>Punto</strong>: quien tuvo más votos se lleva la carta de pregunta como punto.
               Todos recuperan su tarjeta de votación.
             </li>
-            <li>♻️ <strong>Cambio de lector</strong>: el turno pasa al siguiente jugador en sentido horario.</li>
+            <li>
+              <strong>Cambio de lector</strong>: el turno pasa al siguiente jugador en sentido horario.
+            </li>
           </motion.ol>
 
-          <motion.div {...fadeUp} className="mt-6 rounded-xl border border-black/10 bg-white p-5 text-left">
+          <motion.div
+            {...fadeUp}
+            className="mt-6 rounded-xl border border-black/10 bg-white p-5 text-left text-justify md:text-left"
+          >
             <p className="text-sm text-black/60">
               ¿Quieren más charla? Pueden añadir una <strong>fase de explicación</strong> para comentar
               por qué votaron así —más interacción y risas aseguradas.
@@ -132,25 +141,28 @@ export default function ComoJugarPage() {
           </motion.h2>
 
           <motion.div {...fadeUp} className="mt-4 grid gap-5 sm:grid-cols-3">
-            <div className="rounded-2xl border border-black/10 bg-white p-5">
+            <div className="rounded-2xl border border-black/10 bg-white p-5 text-justify md:text-left">
               <div className="mb-3 h-8 w-8 rounded-md bg-[rgb(var(--red))]" />
-              <h3 className="mb-1 font-bold">🔴 Rojo</h3>
+              <h3 className="mb-1 font-bold">Rojo</h3>
               <p className="text-black/70">Preguntas picantes.</p>
             </div>
-            <div className="rounded-2xl border border-black/10 bg-white p-5">
+            <div className="rounded-2xl border border-black/10 bg-white p-5 text-justify md:text-left">
               <div className="mb-3 h-8 w-8 rounded-md bg-[rgb(var(--blue))]" />
-              <h3 className="mb-1 font-bold">🔵 Azul</h3>
+              <h3 className="mb-1 font-bold">Azul</h3>
               <p className="text-black/70">Preguntas divertidas.</p>
             </div>
-            <div className="rounded-2xl border border-black/10 bg-white p-5">
+            <div className="rounded-2xl border border-black/10 bg-white p-5 text-justify md:text-left">
               <div className="mb-3 h-8 w-8 rounded-md bg-[rgb(var(--yellow))]" />
-              <h3 className="mb-1 font-bold">🟡 Amarillo</h3>
+              <h3 className="mb-1 font-bold">Amarillo</h3>
               <p className="text-black/70">Preguntas optimistas.</p>
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp} className="mt-6 rounded-xl border border-black/10 bg-white p-5">
-            <h4 className="mb-2 font-bold">😌 Modo tranqui</h4>
+          <motion.div
+            {...fadeUp}
+            className="mt-6 rounded-xl border border-black/10 bg-white p-5 text-justify md:text-left"
+          >
+            <h4 className="mb-2 font-bold">Modo tranqui</h4>
             <p className="text-black/70">
               Si prefieren una versión para todo público, retiren las <strong>rojas</strong> y jueguen solo
               con <strong>azules</strong> y <strong>amarillas</strong>.
@@ -163,36 +175,39 @@ export default function ComoJugarPage() {
       <section className="relative py-10 sm:py-14">
         {/* Carta lateral izquierda */}
         <div className="pointer-events-none absolute -left-12 bottom-8 hidden rotate-[8deg] md:block">
-          <FlipCardColored color="red" text="¡Desempate!" width="w-40 md:w-52" rotate={8} />
+          <FlipCardColored color="red" text="Desempate" width="w-40 md:w-52" rotate={8} />
         </div>
 
         <div className="mx-auto max-w-[950px] px-6 text-center md:text-left">
           <motion.div {...fadeUp} className="grid gap-8 md:grid-cols-2">
             <div>
               <h2 className="text-[clamp(26px,4.4vw,40px)] font-extrabold">¿Empate?</h2>
-              <ul className="mt-3 list-disc pl-6 space-y-2 text-[clamp(15px,2vw,18px)] text-black/75">
+              <ul className="mt-3 list-disc pl-6 space-y-2 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left">
                 <li>El lector decide entre los empatados; o</li>
                 <li>
                   <strong>Revotación</strong> solo entre finalistas. Pueden argumentar a favor o en contra
-                  antes de volver a votar 🎭.
+                  antes de volver a votar.
                 </li>
               </ul>
             </div>
             <div>
               <h2 className="text-[clamp(26px,4.4vw,40px)] font-extrabold">¿Cuándo termina?</h2>
-              <p className="mt-3 text-[clamp(15px,2vw,18px)] text-black/75">
+              <p className="mt-3 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left">
                 Cuando se acaben las rondas acordadas o no queden cartas. Gana quien tenga{" "}
                 <strong>más puntos</strong>.
               </p>
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp} className="mt-8 rounded-2xl border border-black/10 bg-white p-5 text-left">
-            <h3 className="mb-1 font-bold">🔥 Diagnóstico final</h3>
+          <motion.div
+            {...fadeUp}
+            className="mt-8 rounded-2xl border border-black/10 bg-white p-5 text-justify md:text-left"
+          >
+            <h3 className="mb-1 font-bold">Diagnóstico final</h3>
             <p className="text-black/70">
               Al cerrar la partida, lean el <em>Diagnóstico</em>: descubrirán qué vibra proyectó
-              cada quien según los colores de cartas que acumuló. Compártanlo con el grupo… ¡y
-              que empiecen las bromas! 🤣
+              cada quien según los colores de cartas que acumuló. Compártanlo con el grupo y
+              dejen que comiencen las bromas.
             </p>
           </motion.div>
         </div>
@@ -203,11 +218,13 @@ export default function ComoJugarPage() {
         <div className="mx-auto max-w-[950px] px-6 text-center">
           <motion.div
             {...fadeUp}
-            className="mx-auto flex flex-col items-center justify-center gap-4 rounded-2xl border border-black/10 bg-white p-8 sm:flex-row sm:gap-6"
+            className="mx-auto flex flex-col items-center justify-center gap-4 rounded-2xl border border-black/10 bg-white p-8 sm:flex-row sm:gap-6 text-justify sm:text-left"
           >
             <div>
               <h3 className="text-[clamp(22px,3.6vw,28px)] font-extrabold">¿Listos para jugar?</h3>
-              <p className="mt-1 text-black/70">Compra el juego y recíbelo en cualquier ciudad de Bolivia.</p>
+              <p className="mt-1 text-black/70">
+                Compra el juego y recíbelo en cualquier ciudad de Bolivia.
+              </p>
             </div>
             <Link
               href="/comprar"
