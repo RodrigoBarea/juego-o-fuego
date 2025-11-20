@@ -12,9 +12,9 @@ const LINKS = {
     tagline: "Preguntas simples, votaciones épicas.",
     avatar: "/logos/card-front-badge-black.png", // logo cuadrado que ya tienes
   },
-  whatsappNumber: "59170000000",
+  whatsappNumber: "59162379797",
   social: {
-    instagram: "https://instagram.com/tu_cuenta",
+    instagram: "https://instagram.com/juegoofuego.bol",
     tiktok: "https://www.tiktok.com/@tu_cuenta",
     youtube: "https://www.youtube.com/@tu_cuenta",
     twitter: "https://x.com/tu_cuenta",

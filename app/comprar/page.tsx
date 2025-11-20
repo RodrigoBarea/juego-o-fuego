@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useMemo, useState } from "react"
 import { motion, type MotionProps } from "framer-motion"
 
-const WHATSAPP_NUMBER = "59170000000" // 👈 Reemplaza por tu número
+const WHATSAPP_NUMBER = "59162379797" // 👈 Reemplaza por tu número
 
 // ===== Config del producto =====
 const PRODUCT = {
@@ -21,7 +21,7 @@ const PRODUCT = {
   short:
     "Preguntas simples, votaciones épicas. El party game para romper el hielo y descubrir la vibra del grupo.",
   includes: [
-    "10 pins dde numeración.",
+    "10 pins de numeración.",
     "90 cartas de votación.",
     "180 cartas de preguntas.",
     "1 set de instrucciones.",
