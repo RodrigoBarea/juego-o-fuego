@@ -166,13 +166,7 @@ export default function ContactoPage() {
             Facebook
           </LinkTile>
 
-          {/* extras opcionales */}
-          <LinkTile href={LINKS.pages.catalogoPDF} icon={Icons.link}>
-            Catálogo PDF
-          </LinkTile>
-          <LinkTile href={LINKS.pages.puntosVenta} icon={Icons.link}>
-            Puntos de venta
-          </LinkTile>
+
         </div>
 
 
