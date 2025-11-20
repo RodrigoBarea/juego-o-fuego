@@ -36,12 +36,11 @@ export default function ComoJugarPage() {
             {...fadeUp}
             className="mt-4 max-w-[780px] mx-auto md:mx-0 text-[clamp(16px,2vw,20px)] text-black/70 text-justify md:text-left"
           >
-            <strong>¿Juego o Fuego?</strong> es un party game donde{" "}
-            <strong>podrás saber lo que tus amigos piensan de ti.</strong>{" "}
-            A través de preguntas sobre la vida,{" "}
-            <strong>todos votan en secreto</strong> para elegir quién encaja mejor en cada situación.
-            Prepárate para sorpresas: aquí,{" "}
-            <strong>la mayoría tiene la última palabra</strong>.
+            <strong>¿Juego o Fuego?</strong> es un party game pensado para revelar qué{" "}
+            <strong>realmente</strong> piensa el grupo de cada jugador. A través de preguntas sobre
+            distintas facetas de la vida, <strong>todos votan en secreto</strong> para elegir quién
+            encaja mejor en cada situación. Ronda tras ronda irán apareciendo secretos y sorpresas:
+            aquí, <strong>el voto de la mayoría tiene la última palabra.</strong>
           </motion.p>
         </div>
       </section>
@@ -63,18 +62,21 @@ export default function ComoJugarPage() {
             className="mt-4 list-disc pl-6 md:pl-8 space-y-2 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left"
           >
             <li>
-              <strong>Asignación de números</strong>: el grupo elige al jugador más
-              “borracho o el más divertido” como <strong>#1</strong>. Los demás reciben números en sentido horario.
-              Coloca tu número doblado (tipo triángulo) visible sobre la mesa.
+              <strong>Asignación de números</strong>: el grupo decide quién es el jugador más{" "}
+              <strong>borracho</strong>. Esa persona será el <strong>#1</strong> y los demás reciben
+              números en sentido de las agujas del reloj. Cada jugador dobla su número en forma de
+              triángulo y lo coloca visible sobre la mesa como identificador.
             </li>
             <li>
-              <strong>Tarjetas de votación</strong>: cada jugador recibe tarjetas del{" "}
-              <em>1…n</em>. Puedes votar por ti mismo, pero con sinceridad —solo si crees
-              que te describe mejor que a cualquier otro.
+              <strong>Tarjetas de votación</strong>: cada jugador recibe tarjetas numeradas del{" "}
+              <em>1…n</em>, donde <em>n</em> es el total de jugadores (por ejemplo, si hay 6
+              jugadores, las tarjetas van del 1 al 6). Puedes votar por ti mismo, pero con
+              sinceridad: solo si de verdad crees que la pregunta te describe mejor que a cualquier
+              otro.
             </li>
             <li>
-              <strong>Primer lector</strong>: empieza el <strong>#1</strong>, luego el{" "}
-              <strong>#2</strong>, y así sucesivamente.
+              <strong>Primer lector</strong>: el jugador <strong>#1</strong> será el primero en leer
+              una carta. Luego seguirá el <strong>#2</strong>, y así sucesivamente.
             </li>
           </motion.ul>
         </div>
@@ -97,27 +99,37 @@ export default function ComoJugarPage() {
             className="mt-4 list-decimal pl-6 md:pl-8 space-y-3 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left"
           >
             <li>
-              <strong>Selección de carta</strong>: el lector elige un mazo (rojo, azul o amarillo) y{" "}
-              <strong>lee la pregunta</strong> al grupo.
+              <strong>Elección del mazo y carta</strong>: el lector elige de qué mazo (rojo, azul o
+              amarillo) sacar una carta de pregunta para esa ronda. Cada mazo tiene su identificador
+              visible sobre la mesa.
             </li>
             <li>
-              <strong>Votación secreta</strong>: cada jugador (incluido el lector) elige la tarjeta
-              del jugador que mejor encaja y la deja boca abajo.
+              <strong>Lectura de la pregunta</strong>: el lector toma una carta del mazo elegido y
+              lee en voz alta la pregunta al grupo.
+            </li>
+            <li>
+              <strong>Votación secreta</strong>: cada jugador (incluido el lector) selecciona en
+              secreto la tarjeta de votación con el número del jugador que mejor encaja con la
+              pregunta y la deja boca abajo sobre la mesa.
               <br />
               <span className="text-black/60">
-                Alternativa: votación abierta. El moderador cuenta “uno, dos, tres” y todos
-                muestran su voto a la vez.
+                Alternativa: si el grupo lo prefiere, pueden hacer una votación abierta. El
+                moderador cuenta “uno, dos, tres” y, a la de tres, todos muestran su voto al mismo
+                tiempo.
               </span>
             </li>
             <li>
-              <strong>Revelación</strong>: el lector mezcla y revela los votos; se cuenta la mayoría.
+              <strong>Revelación de votos</strong>: una vez que todos hayan votado, el lector mezcla
+              las tarjetas para mantener el anonimato y luego las revela una por una.
             </li>
             <li>
-              <strong>Punto</strong>: quien tuvo más votos se lleva la carta de pregunta como punto.
-              Todos recuperan su tarjeta de votación.
+              <strong>Conteo y punto</strong>: se cuentan los votos y el jugador con mayoría se
+              lleva la carta de pregunta como punto. Después, cada jugador recupera su tarjeta de
+              votación.
             </li>
             <li>
-              <strong>Cambio de lector</strong>: el turno pasa al siguiente jugador en sentido horario.
+              <strong>Cambio de lector</strong>: el turno de lector pasa al siguiente jugador en
+              sentido horario, que elegirá un mazo y comenzará una nueva ronda.
             </li>
           </motion.ol>
 
@@ -125,9 +137,17 @@ export default function ComoJugarPage() {
             {...fadeUp}
             className="mt-6 rounded-xl border border-black/10 bg-white p-5 text-left text-justify md:text-left"
           >
-            <p className="text-sm text-black/60">
-              ¿Quieren más charla? Pueden añadir una <strong>fase de explicación</strong> para comentar
-              por qué votaron así —más interacción y risas aseguradas.
+            <h4 className="mb-2 font-bold">Reglas adicionales (opcionales)</h4>
+            <p className="text-sm text-black/70">
+              <strong>Fase de explicación:</strong> después de revelar los votos, pueden añadir una
+              fase en la que cada persona explique por qué votó como votó. Suele generar risas y
+              discusiones divertidas, añadiendo más interacción al juego.
+            </p>
+            <p className="mt-2 text-sm text-black/70">
+              <strong>Regla de bebida:</strong> si quieren acompañar el juego con unas copas, cada
+              vez que un jugador gane un punto puede tomar una cantidad de bebida previamente
+              acordada entre todos. Si alguien no quiere beber, puede hacer un pequeño reto en su
+              lugar.
             </p>
           </motion.div>
         </div>
@@ -162,10 +182,11 @@ export default function ComoJugarPage() {
             {...fadeUp}
             className="mt-6 rounded-xl border border-black/10 bg-white p-5 text-justify md:text-left"
           >
-            <h4 className="mb-2 font-bold">Modo tranqui</h4>
+            <h4 className="mb-2 font-bold">Modo familiar</h4>
             <p className="text-black/70">
-              Si prefieren una versión para todo público, retiren las <strong>rojas</strong> y jueguen solo
-              con <strong>azules</strong> y <strong>amarillas</strong>.
+              Si prefieren una versión más apta para todo público, retiren las cartas{" "}
+              <strong>rojas</strong> y jueguen solo con las cartas <strong>azules</strong> y{" "}
+              <strong>amarillas</strong>.
             </p>
           </motion.div>
         </div>
@@ -183,18 +204,23 @@ export default function ComoJugarPage() {
             <div>
               <h2 className="text-[clamp(26px,4.4vw,40px)] font-extrabold">¿Empate?</h2>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left">
-                <li>El lector decide entre los empatados; o</li>
                 <li>
-                  <strong>Revotación</strong> solo entre finalistas. Pueden argumentar a favor o en contra
-                  antes de volver a votar.
+                  Por regla general, <strong>el lector decide</strong> quién es el ganador entre los
+                  jugadores empatados.
+                </li>
+                <li>
+                  Alternativa: pueden hacer una <strong>revotación</strong> solo entre los
+                  finalistas. Antes de volver a votar, cualquiera puede dar argumentos a favor o en
+                  contra de un jugador para tratar de convencer al resto del grupo.
                 </li>
               </ul>
             </div>
             <div>
               <h2 className="text-[clamp(26px,4.4vw,40px)] font-extrabold">¿Cuándo termina?</h2>
               <p className="mt-3 text-[clamp(15px,2vw,18px)] text-black/75 text-justify md:text-left">
-                Cuando se acaben las rondas acordadas o no queden cartas. Gana quien tenga{" "}
-                <strong>más puntos</strong>.
+                El juego termina cuando se alcanzan el número de rondas acordadas o cuando se agotan
+                las cartas de preguntas. Gana quien tenga <strong>más puntos</strong> (más cartas de
+                preguntas acumuladas).
               </p>
             </div>
           </motion.div>
@@ -205,15 +231,17 @@ export default function ComoJugarPage() {
           >
             <h3 className="mb-1 font-bold">Diagnóstico final</h3>
             <p className="text-black/70">
-              Al cerrar la partida, lean el <em>Diagnóstico</em>: descubrirán qué vibra proyectó
-              cada quien según los colores de cartas que acumuló. Compártanlo con el grupo y
-              dejen que comiencen las bromas.
+              Al terminar la partida, lean el <em>Diagnóstico</em>: descubrirán cómo los percibió el
+              grupo, qué energía proyectó cada quien y cuál fue su “vibra” dominante según los
+              colores de cartas que acumuló. Compártanlo con el grupo y dejen que comiencen las
+              bromas.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* ====== CTA FINAL ====== */}
+       {/* ====== CTA FINAL ====== */}
       <section className="relative py-12 sm:py-16">
         <div className="mx-auto max-w-[950px] px-6 text-center">
           <motion.div
