@@ -10,7 +10,7 @@ const WHATSAPP_NUMBER = "59162379797" // 👈 Reemplaza por tu número
 // ===== Config del producto =====
 const PRODUCT = {
   name: "¿Juego o Fuego? — Juego de cartas",
-  priceBs: 210,
+  priceBs: 190,
   sku: "JOF-BASE-001",
   images: [
     { src: "/producto/3 (1).jpg", alt: "Caja ¿Juego o Fuego? vista frontal" },
