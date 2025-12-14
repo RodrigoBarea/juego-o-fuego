@@ -263,6 +263,35 @@ export default function ComoJugarPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ====== VIDEO DEMO ====== */}
+<section className="relative py-12 sm:py-16">
+  <div className="mx-auto max-w-[950px] px-6 text-center">
+    <motion.div
+      {...fadeUp}
+      className="mx-auto rounded-2xl border border-black/10 bg-white p-6"
+    >
+      <h3 className="mb-4 text-[clamp(22px,3.6vw,28px)] font-extrabold">
+        Mira cómo se juega
+      </h3>
+
+      {/* Contenedor aspect-ratio 9:16 */}
+      <div className="mx-auto w-full max-w-[360px] sm:max-w-[420px]">
+        <div className="relative w-full overflow-hidden rounded-xl bg-black aspect-[9/16]">
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src="/videos/como-jugar-web.mp4"
+            controls
+            playsInline
+          />
+        </div>
+      </div>
+
+    
+    </motion.div>
+  </div>
+</section>
+
     </main>
   )
 }
