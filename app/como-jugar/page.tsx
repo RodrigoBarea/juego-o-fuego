@@ -241,28 +241,7 @@ export default function ComoJugarPage() {
       </section>
 
       {/* ====== CTA FINAL ====== */}
-       {/* ====== CTA FINAL ====== */}
-      <section className="relative py-12 sm:py-16">
-        <div className="mx-auto max-w-[950px] px-6 text-center">
-          <motion.div
-            {...fadeUp}
-            className="mx-auto flex flex-col items-center justify-center gap-4 rounded-2xl border border-black/10 bg-white p-8 sm:flex-row sm:gap-6 text-justify sm:text-left"
-          >
-            <div>
-              <h3 className="text-[clamp(22px,3.6vw,28px)] font-extrabold">¿Listos para jugar?</h3>
-              <p className="mt-1 text-black/70">
-                Compra el juego y recíbelo en cualquier ciudad de Bolivia.
-              </p>
-            </div>
-            <Link
-              href="/comprar"
-              className="inline-flex items-center rounded-xl border border-black px-5 py-2.5 text-[15px] font-semibold transition hover:bg-black hover:text-white"
-            >
-              Cómpralo ahora
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+   
 
       {/* ====== VIDEO DEMO ====== */}
 <section className="relative py-12 sm:py-16">
@@ -291,6 +270,29 @@ export default function ComoJugarPage() {
     </motion.div>
   </div>
 </section>
+
+    {/* ====== CTA FINAL ====== */}
+      <section className="relative py-12 sm:py-16">
+        <div className="mx-auto max-w-[950px] px-6 text-center">
+          <motion.div
+            {...fadeUp}
+            className="mx-auto flex flex-col items-center justify-center gap-4 rounded-2xl border border-black/10 bg-white p-8 sm:flex-row sm:gap-6 text-justify sm:text-left"
+          >
+            <div>
+              <h3 className="text-[clamp(22px,3.6vw,28px)] font-extrabold">¿Listos para jugar?</h3>
+              <p className="mt-1 text-black/70">
+                Compra el juego y recíbelo en cualquier ciudad de Bolivia.
+              </p>
+            </div>
+            <Link
+              href="/comprar"
+              className="inline-flex items-center rounded-xl border border-black px-5 py-2.5 text-[15px] font-semibold transition hover:bg-black hover:text-white"
+            >
+              Cómpralo ahora
+            </Link>
+          </motion.div>
+        </div>
+      </section>
 
     </main>
   )
