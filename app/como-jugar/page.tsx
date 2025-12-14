@@ -280,7 +280,7 @@ export default function ComoJugarPage() {
         <div className="relative w-full overflow-hidden rounded-xl bg-black aspect-[9/16]">
           <video
             className="absolute inset-0 h-full w-full object-cover"
-            src="/videos/como-jugar-web.mp4"
+            src="/videos/como-jugar-15mb.mp4"
             controls
             playsInline
           />
