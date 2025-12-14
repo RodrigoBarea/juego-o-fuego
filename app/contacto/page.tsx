@@ -13,19 +13,15 @@ const LINKS = {
     avatar: "/logos/card-front-badge-black.png", // logo cuadrado que ya tienes
   },
   whatsappNumber: "59162379797",
-  social: {
-    instagram: "https://instagram.com/juegoofuego.bol",
-    tiktok: "https://www.tiktok.com/@tu_cuenta",
-    youtube: "https://www.youtube.com/@tu_cuenta",
-    twitter: "https://x.com/tu_cuenta",
-    facebook: "https://facebook.com/tu_cuenta",
-  },
+social: {
+  instagram: "https://www.instagram.com/juegoofuego.bol?igsh=dDV2cXVrMXFyaWR1",
+  tiktok: "https://www.tiktok.com/@juego.o.fuego?_r=1&_t=ZM-92E39RQ22Ci",
+  facebook: "https://www.facebook.com/share/17pbWaFBxM/?mibextid=wwXIfr",
+},
   pages: {
     comprar: "/comprar",
     comoJugar: "/como-jugar",
-    catalogoPDF: "/catalogos/juego-o-fuego.pdf", // pon tu ruta si tienes PDF
-    puntosVenta: "https://maps.google.com/?q=Puntos+de+venta+Juego+o+Fuego",
-    web: "https://tudominio.com", // si quieres añadirlo
+
   },
 }
 
